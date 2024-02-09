@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carne Seca del Norte</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #000;
+            /* Cambiamos el color de fondo del cuerpo a negro */
+        }
+
+        .video-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
+        }
+
+        video {
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .welcome-container {
+            position: absolute;
+            top: 65%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            z-index: 1;
+            color: #fff;
+            /* Cambiamos el color del texto a blanco */
+            font-size: 36px;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.8),
+                /* Agregamos una sombra al texto */
+                2px 2px 20px rgba(0, 0, 0, 0.8);
+            /* Agregamos un brillo al texto */
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .fade-in {
+            opacity: 1 !important;
+        }
+
+        .logo {
+            position: absolute;
+            top: 50px;
+            /* Ajustamos la posición vertical del logotipo */
+            left: 30%;
+            transform: translateX(-50%);
+            /* Centramos horizontalmente */
+            max-width: 100%;
+            /* Hacemos que la imagen sea responsive */
+            width: 301px;
+            /* Reducimos el tamaño del logotipo */
+            z-index: 1;
+            opacity: 0;
+            box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.5);
+            /* Agregamos una sombra que sobresale del texto */
+            border-radius: 26%;
+            /* Hacemos que el box-shadow sea redondo */
+        }
+
+        .circle {
+            position: absolute;
+            top: 50px;
+            /* Ajustamos la posición vertical del círculo */
+            left: 30%;
+            transform: translateX(-50%);
+            width: 300px;
+            height: 305px;
+            border-radius: 25%;
+            background-color: #fff;
+            opacity: 0;
+            z-index: 0;
+            box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+            /* Agregamos una sombra al círculo */
+        }
+
+        footer {
+            position: fixed;
+            bottom: 5px;
+            width: 100%;
+            text-align: center;
+            color: #fff;
+            font-size: 14px;
+            /* Tamaño de fuente más pequeño */
+            line-height: 1.5;
+            /* Espacio entre líneas */
+            padding: 5px;
+            /* Espaciado interno */
+        }
+
+        .social-logos {
+            position: fixed;
+            bottom: 75px;
+            /* Ajustamos la posición vertical */
+            z-index: 1;
+            display: flex;
+            /* Utilizamos flexbox para alinear los logotipos */
+            justify-content: center;
+            /* Centramos horizontalmente */
+        }
+
+        .whatsapp-logo,
+        .facebook-logo {
+            width: 60px;
+            height: 60px;
+            opacity: 0;
+            box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.5);
+            /* Agregamos una sombra que sobresale del texto */
+            border-radius: 50%;
+            /* Hacemos que el box-shadow sea redondo */
+            margin: 0 10px;
+            /* Margen entre los logotipos */
+        }
+
+        .whatsapp-logo {
+            left: 3%;
+            /* Centramos horizontalmente */
+            transform: translateX(-50%);
+        }
+
+        .facebook-logo {
+            left: 8%;
+            /* Centramos horizontalmente */
+            transform: translateX(-50%);
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+
+    </header>
+
+    <div class="video-container">
+        <video autoplay muted loop>
+            <source src="video/loop1.mp4" type="video/mp4">
+            Tu navegador no soporta la etiqueta de video.
+        </video>
+    </div>
+
+    <img class="logo" src="https://i.postimg.cc/RV3sYhHv/Sin-ti-titulo-2-removebg.png" alt="Logo">
+    <div class="circle"></div>
+
+    <div class="welcome-container" id="changingText">¡MUCHAS GRACIAS POR SER PARTE DE ESTA EXPERIENCIA!</div>
+
+    <div class="social-logos">
+        <a href="https://www.facebook.com/profile.php?id=61556238000564" target="_blank">
+            <img class="facebook-logo"
+                src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Facebook_f_logo_%282019%29.svg/240px-Facebook_f_logo_%282019%29.svg.png"
+                alt="Facebook Logo">
+        </a>
+
+        <a href="https://api.whatsapp.com/send?phone=5216144013697&text=Hola%2C%20CarneSeca%20Del%20Norte%F0%9F%A5%A9"
+            target="_blank">
+            <img class="whatsapp-logo"
+                src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/WhatsApp.svg/240px-WhatsApp.svg.png"
+                alt="WhatsApp Logo">
+        </a>
+    </div>
+
+    <footer>CARNE SECA DEL NORTE / CHIHUAHUA 2024.</footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <script>
+        window.addEventListener('load', function () {
+            positionLogo();
+            window.addEventListener('resize', positionLogo);
+            animateText();
+        });
+
+        function positionLogo() {
+            var logo = document.querySelector('.logo');
+            var circle = document.querySelector('.circle');
+            var logoWidth = logo.offsetWidth;
+            var windowWidth = window.innerWidth;
+            var leftPosition = (windowWidth - logoWidth) / 2;
+            logo.style.left = leftPosition + 'px';
+            circle.style.left = leftPosition + 'px';
+        }
+
+        function animateText() {
+            var texts = ["¡MUCHAS GRACIAS POR SER PARTE DE ESTA EXPERIENCIA!", "ESTAMOS EMPRENDIENDO ESTE NUEVO CAMINO PARA OFRECERTE LO MEJOR", "¡Y DISFRUTES DE UN SNACK SALUDABLE Y DELICIOSO!", "VISITANOS EN FACEBOOK O ENVIANOS UN WHATSAPP"];
+            var index = 0;
+            var changingText = document.getElementById('changingText');
+            changingText.style.opacity = 1; // Hacer que el texto aparezca al cargar la página
+            setInterval(function () {
+                changingText.style.opacity = 0;
+                setTimeout(function () {
+                    changingText.innerText = texts[index];
+                    changingText.style.opacity = 1;
+                }, 200); // Espera 0.3 segundos antes de cambiar el texto
+                index = (index + 1) % texts.length;
+            }, 3000); // Cambia cada 3 segundos
+        }
+
+        anime({
+            targets: ['.logo', '.circle', '.facebook-logo', '.whatsapp-logo'],
+            translateY: [-50, 0],
+            opacity: [0, 1],
+            duration: 1000,
+            easing: 'easeOutExpo',
+            delay: 1000 // Retraso de 1 segundo después de la animación del texto
+        });
+    </script>
+
+</body>
+
+</html>
